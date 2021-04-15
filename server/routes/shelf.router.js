@@ -13,8 +13,14 @@ router.get('/', (req, res) => {
  * Add an item for the logged in user to the shelf
  */
 router.post('/', (req, res) => {
-  // endpoint functionality
+  let insertItemString = `INSERT INTO "item" ("description", "image_url", "user_id")
+  VALUES ($1, $2, $3)
+  RETURNING "id";`
+
+  pool.query(insertItemString, [createdItemID, ])
+
 });
+
 
 /**
  * Delete an item if it's something the logged in user added
